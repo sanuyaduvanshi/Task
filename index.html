@@ -1,0 +1,124 @@
+{% extends 'signup/basic.html'%}
+
+{% load static%}
+
+{%block body%}
+
+<body>
+  {% block nav%}
+  <header id="header">
+    <div class="container-fluid">
+
+      <div class="logo float-left">
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Logo</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login'%}">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'spsignup'%}">ServiceProvider</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="{%url 'home' %}" class="nav-link">logout</a></li>
+
+    </ul>
+  </nav>
+
+    </div>
+  </header>
+{%endblock%}
+  {% if error %}
+  <h4>{{error}}</h4>
+  {% endif %}
+  <form method='POST' action="{% url 'register' %}">
+    {%csrf_token%}
+    <div class="container" style="width:50%">
+      <h2 style="text-align:center">User Registration</h2>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name"  placeholder="name">
+      </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username"  placeholder="username">
+    </div>
+
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <label for="passwordagain">Confirm Password</label>
+      <input type="password" class="form-control" name="passwordagain" placeholder=" Confirm Password">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Id</label>
+      <input type="text" class="form-control" name="email" placeholder=" email">
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile No</label>
+      <input type="text" class="form-control" name="mobileno" placeholder=" Mobile No">
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" class="form-control" name="city" placeholder="city">
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" class="form-control" name="state" placeholder="State">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" name="country" placeholder="Country">
+    </div>
+
+    <div class="form-group">
+      <label for="city">Pin</label>
+      <input type="text" class="form-control" name="pin" placeholder=" Pin">
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" name="location" placeholder="Location">
+    </div>
+    <button type="submit" class="btn btn-primary" name="register">Register</button><br>
+    <a href="{%url 'login'%}">Log in here</a>
+</div>
+  </form>
+  <div class="container">
+
+  </div>
+
+</body>
+{%endblock%}

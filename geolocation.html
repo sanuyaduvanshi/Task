@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lattitude and longitude</title>
+
+</head>
+
+<body>
+  <div class="gfg">GeeksforGeeks</div>
+  <p>Displaying location using Latitude and Longitude</p>
+  <button class="geeks" onclick='showlocation()'>Share location</button>
+  <p id="result"></p>
+  <script type="text/javascript">
+    var result = document.getElementById("result");
+
+    function showlocation() {
+      if(navigator.geolocation){
+        result.innerHTML="Detecting location...";
+        navigator.geolocation.getCurrentPosition(getLocation,getError);
+
+      }
+      else{
+        result.innerHTML="browse does not support geolocation";
+
+      }
+    }
+      function getLocation(location){
+        console.log(location);
+        var lat = location.coords.latitude;
+        var lng = location.coords.longitude;
+      //  var xhr =  new XMLHttpRequest();
+      //  xhr.onreadystatechange = function(){
+          //  if(this.readyState == 4 && this.status == 200){
+            //  var arr =JSON.parse(this.responseText);
+            //  console.log(this.responseText);
+
+            //  var data = arr.results[0].address_components;
+            //  var loc =data[2].long_name+", "+data[3].long_name+", "+data[4].long_name;
+            //  console.log(loc);
+          //    result.innerHTML = loc;
+          //  }
+      //  }
+       //.open("GET"," ");
+      //  xhr.send();
+      }
+      function getError(error){
+        result.innerHTML=console.error.messages;
+
+      }
+
+  </script>
+</body>
+
+</html>

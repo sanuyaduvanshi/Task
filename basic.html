@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Urban Clap</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{%static 'signup/img/favicon.png'%}">
+  <link href="{%static 'signup/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{%static 'signup/lib/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{%static 'signup/lib/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet">
+  <link href="{%static 'signup/lib/animate/animate.min.css'%}" rel="stylesheet">
+  <link href="{%static 'signuplib/ionicons/css/ionicons.min.css'%}" rel="stylesheet">
+  <link href="{%static 'signup/lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+  <link href="{%static 'signup/lib/lightbox/css/lightbox.min.css'%}" rel="stylesheet">
+
+  {% block css %}
+  <style>
+            .col-md-3
+            {
+            display: inline-block;
+            margin-left:-4px;
+            }
+
+            .carousel-indicators .active {
+            background-color: blue;
+              }
+
+            .col-md-3 img{
+
+            width: 255px;
+            height: 355px;
+            }
+
+            body .carousel-indicator li{
+            background-color: blue;
+            }
+
+            body .carousel-indicators{
+            bottom: 0;
+            }
+
+            body .carousel-control-prev-icon,
+            body .carousel-control-next-icon{
+            background-color: blue;
+            }
+             body .no-padding{
+             padding-left: 0,
+             padding-right: 0;
+             }
+           </style>
+   {% endblock %}
+</head>
+{%block body%}
+
+<body>
+
+  <!--==========================
+  Header
+  ============================-->
+  {% block nav%}
+  <header id="header">
+    <div class="container-fluid">
+
+      <div class="logo float-left">
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Logo</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login'%}">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'spsignup'%}">ServiceProvider</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+
+
+
+      <li class="nav-item">
+      {{request.user.username}}
+        <a href="{%url 'home' %}" class="nav-link">logout</a></li>
+
+    </ul>
+  </nav>
+
+    </div>
+  </header><!-- #header -->
+{%endblock%}
+<div class="container" style="background-color:grey;height:25%;with:100%;margin-top:200px;background-image:"{%static 'signup/img/nicolasintravel-oN3U95O4cag-unsplash.jpg'%}">
+this is filter
+</div>
+
+
+
+
+
+{%block service%}
+
+<div class="container">
+    <h1>Services Offer </h1>
+<div id="demo" class="carousel slide my-3" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+       {% for i in range %}
+      <li data-target="#demo" data-slide-to="{{i}}" ></li>
+      {% endfor %}
+    </ul>
+
+    <!--Slideshow starts here -->
+    <div class="container carousel-inner no-padding">
+
+
+<!-- triel-->
+
+<div class="container carousel-inner no-padding">
+  <div class="carousel-item active">
+    {% for i in expert %}
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <div class="card align-items-center" style="width: 18rem;">
+        <img src='/media/{{i.eimage}}' class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" id="namepr{{i.id}}">{{i.ename}}</h5>
+          <p class="card-text">{{i.description|slice:"0:53"}}{{i.edescription}}</p>
+          <p class="card-text">{{i.price|slice:"0:53"}}{{i.eprice}}</p>
+
+          <span id="divpr{{i.id}}" class="divpr">
+         <a id="pr{{i.id}}"  href="{%url 'servicereq'%}"  name="button" class="btn btn-success">Service Request</a></span>
+
+        </div>
+      </div>
+    </div>
+    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+  </div>
+  <div class="carousel-item">
+    {% endif %}
+
+    {% endfor %}
+  </div>
+
+
+
+</div>
+
+<!-- triel-->
+</div>
+
+
+
+
+    <!-- left and right controls for the slide -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+
+
+</div>
+{%endblock%}
+
+<script>
+console.log('working');
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+}
+$('.cart').click(function(){
+console.log('clicked');
+var idstr = this.id.toString();
+console.log(idstr);
+if (cart[idstr] !=undefined){
+cart[idstr] = cart[idstr] + 1;
+}
+else
+{
+cart[idstr] = 1;
+}
+console.log(cart);
+localStorage.setItem('cart', JSON.stringify(cart));
+});
+</script>
+
+  <!-- JavaScript Libraries -->
+
+  <script src="{%static 'signup/lib/jquery/jquery.min.js'%}"></script>
+  <script src="{%static 'signup/lib/jquery/jquery-migrate.min.js'%}"></script>
+  <script src="{%static 'signup/lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'signup/llib/easing/easing.min.js'%}"></script>
+  <script src="lib/mobile-nav/mobile-nav.js"></script>
+  <script src="{%static 'signup/lib/mobile-nav/mobile-nav.js'%}"></script>
+  <script src="{%static 'signup/lib/waypoints/waypoints.min.js'%}"></script>
+  <script src="{%static 'signup/lib/counterup/counterup.min.js'%}"></script>
+  <script src="{%static 'signup/lib/owlcarousel/owl.carousel.min.js%'}"></script>
+  <script src="{%static 'signup/lib/isotope/isotope.pkgd.min.js'%}"></script>
+  <script src="{%static 'signup/lib/lightbox/js/lightbox.min.js'%}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{%static 'signup/js/main.js'%}"></script>
+
+
+</body>
+{% endblock%}
+</html>

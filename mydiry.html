@@ -1,0 +1,25 @@
+{% extends 'signup/basic.html'%}
+
+
+{%block body%}
+<div class="container">
+  <h4> Create a new Memory</h4><br><br>
+
+  <div class="row">
+    <form class=" col s12" method="POST" action="{%url 'add'%}">
+      {%csrf_token%}
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea name="data" class="form-control z-depth-1"></textarea>
+          <label for="textarea1">what happend today</label>
+      </div>
+      </div>
+      <button type="submit " name="button" class="btn btn-success">Add..</button>
+      </form>
+
+  </div><br>
+  <a href="{% url 'login'%}" class="btn btn-danger">Home</a>
+
+</div>
+
+{%endblock%}
